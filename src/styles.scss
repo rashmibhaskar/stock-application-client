@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+html{
+  height: 100%;
+} body {
+    /*background-image: url('../src/assets/background-graph.jpg'); */
+    background-image: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('../src/assets/background-graph.jpg'); 
+    overflow:scroll;
+    position:relative;
+    padding:0; 
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; 
+  }
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+

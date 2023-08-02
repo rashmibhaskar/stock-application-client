@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <div class="row">
+                <div class="col-md-6 col-sm-12 text-center p-3 mt-3">
+                        <div><strong>High Price: </strong>{{item.h | number: "1.2-2"}}</div>
+                        <div><strong>Low Price:</strong> &nbsp;{{item.l | number: "1.2-2"}}</div>
+                        <div><strong>Open Price: </strong>{{item.o | number: "1.2-2"}}</div>
+                        <div><strong>Prev Price: </strong> &nbsp;{{item.pc | number: "1.2-2"}}</div>
+                </div>
+                <div class="col-md-6 col-md-12"></div>
+            </div>
+            <div class="row">
+                <a class="col text-center h5 text-dark my-4">About the company</a>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="mt-2"><strong class="h6">IPO Start Date:&nbsp;</strong>{{companydesc.ipo}}</div>
+                    <div class="mt-2"><strong class="h6">Industry:&nbsp;</strong>{{companydesc.finnhubIndustry}}</div>
+                    <div class="d-flex mt-2">
+                        <div class=""><strong class="h6">Webpage:&nbsp;</strong></div>
+                        <a href={{companydesc.weburl}} target="_blank">{{companydesc.weburl}}</a>
+                    </div>
+                    <div class="mt-2"><strong class="h6">Company Peers:&nbsp;</strong></div>
+                </div>
+            </div>
+            <div class="row">
+                    <div class="col d-flex break-text mt-2">
+                        <div *ngFor="let company of companypeers">
+                            <a routerLink="/search/{{company}}" (click)="changePeerRoute(company)">{{company}}</a>,&nbsp;
+                        </div>       
+                </div>
+            </div>
+        </div>
+        <div class="col-sm mt-3">
+            <highcharts-chart
+            [Highcharts] = "highcharts" 
+            [options] = "chartOptions"
+            style = "width:100%; display:block;">
+         </highcharts-chart>
+        </div>
+    </div>
+</div>

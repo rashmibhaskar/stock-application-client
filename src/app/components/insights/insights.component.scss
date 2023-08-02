@@ -1,0 +1,18 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+.table-wid{
+    width:50%;
+}
+.insights{
+    width:550px;
+}
+@include media-breakpoint-down(sm){
+    .table-wid{
+        width:100%;
+    }
+    .insights{
+        width:350px;
+    }
+}

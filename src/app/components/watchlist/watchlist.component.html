@@ -1,0 +1,47 @@
+<div class="card-wrapper">
+<h1 class="heading">My Watchlist</h1>
+<div *ngIf="isEmpty && !ApiError"><ngb-alert  class="w-70 m-4 m-md-5 text-center" type="warning" [dismissible]="false">
+    Currently you don't have any stock in your watchlist.
+   </ngb-alert>
+ </div>
+ <div *ngIf="ApiError"><ngb-alert  class="w-70 m-4 m-md-5 text-center" type="danger" [dismissible]="true">
+  Rate Limit Reached. Please try again later.
+ </ngb-alert>
+ </div>
+ <div *ngIf="!isEmpty && !ApiError" style="cursor:pointer;">
+    <div class="w-70 m-5" *ngFor="let data of finaldata">
+        <div class="card w-60" (click)="gotodetailspage(data.ticker)">
+            <div class="card-body pt-1">
+              <div class="row">
+                <div class="col-12 text-right">
+                    <button type="button" class="close" aria-label="Close" (click)="removedata(data.ticker,$event)">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                </div>
+              </div>
+              <div class="row pt-3">
+                <div class="col-6">
+                    <div class="mb-2 data-ticker">{{data.ticker}}</div>
+                    <div class="data-name mt-2">{{data.name}}</div>
+                </div>
+                <div class="col-6 text-right data-ddp"             
+                     [class.text-danger]="data.d < 0"
+                     [class.text-success]="data.d > 0">
+                    <div class="data-c">{{data.c}}</div>
+                    <div class="price-wrapper d-flex mt-2">
+                        <div class="ml-1" *ngIf="data.d > 0" [class.text-success]="data.d > 0">
+                            <i class="bi bi-caret-up-fill"></i>
+                        </div>
+                        <div class="ml-1" *ngIf="data.d<0" [class.text-danger]="data.d < 0">
+                            <i class="bi bi-caret-down-fill"></i>
+                        </div>
+                        <div class="data-d ml-1">{{data.d}}</div>
+                        <div class="data-dp ml-1">({{data.dp}})%</div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+ </div>
+</div>

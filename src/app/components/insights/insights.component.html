@@ -1,0 +1,44 @@
+<div class="container pt-1">
+    <div class="row pt-2 pb-2">
+        <div class="h5 text-center">Social Sentiments </div>
+    </div>
+    <div class="row">
+        <div class="col table-responsive">
+            <table class="table mx-auto text-center table-wid">
+                <tbody>
+                    <tr class="">
+                        <th class="px-1 py-2 table-secondary">{{companydesc.name}}</th>
+                        <th class="px-4 table-secondary">Reddit</th>
+                        <th class="px-4 table-secondary">Twitter</th>
+                    </tr>
+                    <tr class="">
+                        <th scope="row" class="table-secondary">Total Mentions</th>
+                        <td class="px-4 py-2">{{sentiments.redtot}}</td>
+                        <td class="px-4 py-2">{{sentiments.twitot}}</td>
+                    </tr>
+                    <tr class="">
+                        <th scope="row" class="table-secondary">Positve Mentions</th>
+                        <td class="px-4 py-2">{{sentiments.redpos}}</td>
+                        <td class="px-4 py-2">{{sentiments.twipos}}</td>
+                    </tr>
+                    <tr class="">
+                        <th scope="row" class="table-secondary">Negative Mentions</th>
+                        <td class="px-4 py-2">{{sentiments.redneg}}</td>
+                        <td class="px-4 py-2">{{sentiments.twineg}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row text-center mt-4">
+        <div class="col-sm-6 p-0 insights">
+            <highcharts-chart [Highcharts]="highcharts" [options]="chartOptions" style="width:100%; display:block;">
+            </highcharts-chart>
+        </div>
+        <div class="col-sm-6 p-0 insights">
+            <highcharts-chart [Highcharts]="highcharts" [options]="earningsChartOptions"
+                style="width:100%; display:block;">
+            </highcharts-chart>
+        </div>
+    </div>
+</div>

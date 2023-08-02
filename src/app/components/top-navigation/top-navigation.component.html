@@ -1,0 +1,19 @@
+<nav class="navbar navbar-expand-md navbar-dark sticky-top">
+    <div class="navbar-brand">Stock Search</div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"  aria-expanded="false" aria-label="Toggle navigation" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarTogglerDemo02">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse nav-content" id="navbarTogglerDemo02" [ngbCollapse]="isCollapsed">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item" active (click)="checkclick()">
+          <a class="nav-link mx-2" [routerLink]="['search',getroute()]" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Search</a>
+        </li>
+        <li class="nav-item" (click)="checkclick()">
+          <a class="nav-link mx-2" routerLink="watchlist" routerLinkActive="active">Watchlist</a>
+        </li>
+        <li class="nav-item" (click)="checkclick()">
+          <a class="nav-link mx-2" routerLink="portfolio" routerLinkActive="active">Portfolio</a>
+        </li>
+      </ul>
+    </div>
+  </nav>

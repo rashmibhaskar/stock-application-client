@@ -1,0 +1,16 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+.char{
+    height:600px;
+    width:1140px;
+}
+
+@include media-breakpoint-down(sm){
+    .char{
+        width:350px;
+    }
+}
+
+
+

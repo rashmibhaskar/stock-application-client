@@ -1,0 +1,155 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+.top-container{
+    margin:30px auto;
+    width:80%;
+}
+
+// .right{
+//     width: 100px;
+//     margin-left: auto;
+// }
+
+.logo{
+    margin:2px auto;
+    padding-left:120px;
+    max-height:100px;
+}
+.center{
+    margin:10 auto;
+}
+
+.company-star{
+    display:flex;
+}
+
+.company{
+    margin: 10px 7px 0px 5px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.star{
+    margin:10px 5px 0px 5px;
+    font-size: 20px;
+}
+
+.star-fill{
+    color:#FFC300;
+}
+
+// .buy-sell{
+//     display:flex;
+// }
+
+.name{
+    font-size: 18px;
+    margin: 10px 7px 0px 5px;
+}
+.exchange{
+    font-size: 15px;
+    margin: 10px 7px 0px 5px;
+}
+.buy-btn{
+    margin:7px 3px;
+}
+
+.sell-btn{
+    margin:7px 3px;
+}
+
+.sp-c{
+    margin: 10px 7px 0px 5px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.data-c{
+    padding-top:20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.comm{
+    margin: 10px 0px 0px 5px;
+    font-size: 18px;
+    font-weight: bold;
+}
+.date-m{
+    font-size: 12px;
+}
+@include media-breakpoint-down(sm){
+    .top-container{
+        margin:30px 5px;
+        width:100%;
+    }
+    
+    .right{
+        width: 100px;
+        margin-left: auto;
+    }
+    
+    .logo{
+        margin:2px auto;
+        padding-left:30px;
+        max-height:60px;
+    }
+    .center{
+        margin:10 auto;
+    }
+    
+    .company-star{
+        display:flex;
+    }
+    
+    .company{
+        margin: 10px 7px 0px 5px;
+        font-size: 25px;
+        font-weight: bold;
+    }
+    
+    .star{
+        margin:10px 5px 0px 5px;
+        font-size: 20px;
+    }
+    
+    .data-c{
+        padding-top:10px;
+        font-size: 24px;
+        font-weight: bold;
+    }
+    
+    .star-fill{
+        color:#FFC300;
+    }
+    
+    .buy-sell{
+        display:flex;
+    }
+    
+    .name{
+        font-size: 20px;
+        margin: 10px 7px 0px 5px;
+    }
+    .exchange{
+        font-size: 10px;
+        margin: 5px 0px 0px 5px;
+    }
+    .buy-btn{
+        margin:7px 3px;
+    }
+    
+    .sell-btn{
+        margin:7px 3px;
+    }
+
+    .comm{
+        margin: 10px 0px 0px 0px;
+        font-size: 11px;
+        font-weight: bold;
+    }
+    .date-m{
+        font-size: 12px;
+    }
+}

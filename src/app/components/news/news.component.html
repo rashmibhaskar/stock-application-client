@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6" *ngFor="let data of news">
+            <div class="card m-3 news-card" data-toggle="modal" data-target="#buyportModel"
+                (click)="openModal(buyportModel,data)">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-md-4 image-fit">
+                            <img class="card-img" src="{{ data.image }}" alt="News card" />
+                        </div>
+                        <div class="col">
+                            {{data.headline}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ng-template #buyportModel let-modal>
+                <div class="modal-header">
+                    <div>
+                        <div class="h3 m-0">{{data.source}}</div>
+                        <div class="h6 text-secondary m-0">{{data.datetime}}</div>
+                    </div>
+                    <button type="button" class="btn-close" aria-label="Close"
+                        (click)="modal.dismiss('Cross click')"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="h5">{{data.headline}}</div>
+                    <div>{{data.summary}}</div>
+                    <div class="text-secondary">For more details click <a href={{data.url}} target="_blank">here</a>
+                    </div>
+                </div>
+                <div class="w-80 m-3 text-start border border-light border-2 rounded">
+                    <div class="px-3 py-3">
+                        <div class="pb-2">Share</div>
+                        <a class="twitter-share-button mr-3"
+                            href="https://twitter.com/intent/tweet?text={{data.headline}}&url={{data.url}}"
+                            data-size="large" target="_blank">
+                            <i class="fa-brands fa-twitter fa-3x"></i></a>
+
+                        <a class="fb-share-button" data-href="{{data.url}}" data-layout="button_count"
+                            data-size="large">
+                            <a target="_blank"
+                                href="https://www.facebook.com/sharer/sharer.php?u={{data.url}}&amp;src=sdkpreparse"
+                                class="fb-xfbml-parse-ignore">
+                                <i class="fa-brands fa-facebook-square fa-3x" style="color:#303fa0;"></i>
+                            </a>
+                        </a>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>

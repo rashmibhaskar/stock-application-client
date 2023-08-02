@@ -1,0 +1,96 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+.heading{
+    margin:35px auto;
+    font-size: 25px;
+    font-weight: bold;
+}
+#input {
+    // border: 3px solid #2224AC;
+    // border-radius: 25px;
+    // width: 450px;
+    // display: flex;
+    // flex-direction: row;
+    // justify-content: right;
+    // align-items: center;
+    // padding-top: 2px;
+    // padding-bottom: 2px;
+    border: 3px solid #303fa0;
+    border-radius: 25px;
+    width: 450px;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+    padding:2px 1px 2px 20px;
+}
+button {
+    border: none;
+    background:none;
+ }
+input {
+    width: 360px;
+    border: none;
+    font-size: 16px;
+    height:40px;
+}
+
+input:focus {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.search-icon{
+    width: 25px;
+    height: 20px;
+    //padding-left: 36px;
+    padding-right:35px;
+}
+
+.search-icon:hover{
+    cursor:pointer;
+}
+
+.clear-icon{
+    padding-right: 10px;
+    width: 25px;
+    height: 20px;
+    padding-right:30px;
+    //margin-left: 30px;
+}
+
+.clear-icon:hover{
+    cursor:pointer;
+}
+
+
+.fa-magnifying-glass,.fa-xmark{
+    color: #303fa0;
+}
+
+@include media-breakpoint-down(sm) { 
+    #input {
+        border: 3px solid #303fa0;
+        border-radius: 25px;
+        width: 350px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding-top: 2px;
+        padding-bottom: 2px;
+    }
+    
+    input {
+        width: 250px;
+        border: none;
+        font-size: 16px;
+    }
+
+    
+}
+
+

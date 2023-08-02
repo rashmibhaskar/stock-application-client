@@ -1,0 +1,148 @@
+<div class="card-wrapper">
+  <div class="w-70 m-md-5 text-center">
+    <ngb-alert #selfClosingAlert *ngIf="successMessage" type="success" (closed)="successMessage = ''"
+      class="text-center">{{ successMessage }}
+    </ngb-alert>
+  </div>
+  <div class="w-70 m-md-5 text-center">
+    <ngb-alert class="w-50 text-center" #closingAlert *ngIf="failureMessage" type="danger"
+      (closed)="failureMessage = ''" class="text-center">{{ failureMessage }}
+    </ngb-alert>
+  </div>
+  <h1 class="heading">My Portfolio</h1>
+  <h2 class="heading">Money in Wallet: ${{walletmoney | number: "1.2-2"}}</h2>
+  <div *ngIf="showAlert && !ApiError">
+    <ngb-alert class="w-70 m-4 m-md-5 text-center" type="warning" [dismissible]="false">
+      Currently you don't have any stock.
+    </ngb-alert>
+  </div>
+  <div *ngIf="ApiError">
+    <ngb-alert class="w-70 m-4 m-md-5 text-center" type="danger" [dismissible]="true">
+      Rate Limit Reached. Please try again later.
+    </ngb-alert>
+  </div>
+  <div *ngIf="!showAlert && !ApiError">
+    <div *ngFor="let data of finaldata">
+      <div class="card card-container">
+        <div class="card-header d-flex" (click)="gotodetailspage(data.ticker)" style="cursor:pointer;">
+          <div class="h3 mt-2">{{data.ticker}}</div>
+          <div class="h5 ml-2 mt-2 pt-1 text-secondary">{{data.name}}</div>
+        </div>
+        <div class="card-body portcard">
+          <div class="row">
+            <div class="col-sm">
+              <div class="row">
+                <div class="col">Quantity</div>
+                <div class="col text-right">{{data.quantity}}</div>
+              </div>
+              <div class="row">
+                <div class="col">Avg. Cost/Share</div>
+                <div class="col text-right">{{data.avgcost | number: "1.2-2"}}</div>
+              </div>
+              <div class="row">
+                <div class="col">Total Cost</div>
+                <div class="col text-right">{{data.total | number: "1.2-2"}}</div>
+              </div>
+            </div>
+            <div class="col-sm">
+              <div class="row">
+                <div class="col">Change</div>
+                <div class="col text-right" [class.text-danger]="data.change < 0"
+                  [class.text-success]="data.change > 0">
+                  <p class="ml-1 mb-0" *ngIf="data.change > 0" [class.text-success]="data.change > 0">
+                    <i class="bi bi-caret-up-fill"></i> {{data.change}}
+                  </p>
+                  <p class="ml-1 mb-0" *ngIf="data.change<0" [class.text-danger]="data.change < 0">
+                    <i class="bi bi-caret-down-fill"></i> {{data.change}}
+                  </p>
+                  <p class="ml-1 mb-0" *ngIf="data.change==0">
+                    {{data.change}}
+                  </p>
+
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">Current Price</div>
+                <div class="col text-right" [class.text-danger]="data.change < 0"
+                  [class.text-success]="data.change > 0">{{data.currentprice | number: "1.2-2"}}</div>
+              </div>
+              <div class="row">
+                <div class="col">Market Value</div>
+                <div class="col text-right" [class.text-danger]="data.change < 0"
+                  [class.text-success]="data.change > 0">{{data.marketvalue | number: "1.2-2"}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="d-flex float-end">
+            <div class="ml-2">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#buyportModel"
+                (click)="openModal(buyportModel,data)">
+                Buy
+              </button>
+            </div>
+            <div class="ml-2">
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#sellportModel"
+                (click)="openModal(sellportModel,data)">
+                Sell
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #buyportModel let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{modeldata.ticker}}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <div>Current Price: <span>{{modeldata.currentprice | number: "1.2-2"}}</span></div>
+        <div>Money Wallet: <span>$ {{walletmoney | number: "1.2-2"}}</span></div>
+        <div>Quantity: <span><input [(ngModel)]="quantity" type="number" id="quant" name="quant" min="0"
+              style="width:100px;"></span></div>
+        <strong class="text-danger" *ngIf="modeldata.currentprice * quantity>walletmoney">Not enough money in
+          wallet!</strong>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <p>
+      Total : {{ modeldata.currentprice * quantity | number: "1.2-2" }}
+    </p>
+    <button type="button" class="btn ms-auto btn-success"
+      (click)="modal.close('Save click'); onBuy(modeldata.ticker,modeldata.name,quantity,modeldata.currentprice * quantity);"
+      [disabled]="!quantity || modeldata.currentprice * quantity>walletmoney">Buy</button>
+  </div>
+</ng-template>
+<ng-template #sellportModel let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{modeldata.ticker}}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <div>Current Price: <span>{{modeldata.currentprice | number: "1.2-2"}}</span></div>
+        <div>Money Wallet: <span>$ {{walletmoney | number: "1.2-2"}}</span></div>
+        <div>Quantity: <span><input [(ngModel)]="quantity" type="number" id="quant" name="quant" min="0"
+              style="width:100px;"></span></div>
+        <strong class="text-danger" *ngIf="quantity>modeldata.quantity">You cannot sell stocks you do not have!</strong>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <p>
+      Total : {{ modeldata.currentprice * quantity | number: "1.2-2" }}
+    </p>
+    <button type="button" class="btn ms-auto btn-success"
+      (click)="modal.close('Save click'); onSell(modeldata.ticker,modeldata.name,quantity,modeldata.currentprice * quantity);"
+      [disabled]="!quantity || quantity>modeldata.quantity">Sell</button>
+  </div>
+</ng-template>

@@ -1,0 +1,59 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+.card-wrapper{
+    width:80%;
+    margin:auto;
+    align-items: center;
+    justify-content: center;
+}
+.heading{
+    margin:20px auto;
+    text-align: left;
+    padding-left: 50px;
+    font-weight: bold;
+}
+
+.data-ticker{
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.data-name{
+    font-size: 16px;
+}
+
+.data-c{
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.positive {
+    color: green;
+}
+
+.negative {
+    color: red;
+}
+
+.price-wrapper{
+    width:40%;
+    text-align: right;
+    float: right;
+    justify-content: right;
+    align-items: right;
+    font-size:16px;
+}
+
+@include media-breakpoint-down(sm){
+    .card-wrapper{
+        width:100%;
+        margin:auto;
+        align-items: center;
+        justify-content: center;
+    }
+    .data-d,.data-dp{
+        font-size:15px;
+    }
+}
